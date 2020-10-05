@@ -7,10 +7,30 @@
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    @*JqueryUI*@
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+
+    @*Datatables.Net*@
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />*@
+    <link rel="stylesheet" type="text/css" href="~/css/Datatables/DarkDatatables.css" />
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap.min.css" />*@
+    
+
+    @*Toastr*@
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <!-- Include the Dark theme for sweetAlert https://github.com/sweetalert2/sweetalert2-themes -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@sweetalert2/theme-dark@3/dark.css" />
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <span style="font-size: 32px; color: Dodgerblue;">
+                <i class="fas fa-cash-register"></i>
+            </span>
+
             <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Uplift</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarColor01"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +70,7 @@
             </div>
             @*Login and Register links*@
             <partial name="_LoginPartial" />
-        </nav>        
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -66,6 +86,27 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*JQueryUI*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    @*jQuery Serializer JSON*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.1.0/jquery.serializejson.min.js"></script>
+
+    @*DataTabels.Net*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+    @*Toastr*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    @*SweetAlert*@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+
+    @*Font Awreesome*@
+    <script src="https://kit.fontawesome.com/329d00895b.js" crossorigin="anonymous"></script>
+
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

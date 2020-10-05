@@ -1,0 +1,20 @@
+﻿Temas prontos de bootstrap
+https://bootswatch.com/
+
+Grids prontas com filtro, paginação, etc
+https://datatables.net/
+
+Alertas do tipo Toaster
+https://github.com/CodeSeven/toastr
+https://cdnjs.com/libraries/toastr.js/latest
+
+Alerts
+https://sweetalert.js.org/guides/
+Tem esta opção de alertas tbm https://sweetalert2.github.io/ que parece ter mais atividade no github
+Tema escuro para o sweetalert https://github.com/sweetalert2/sweetalert2-themes/tree/master/dark
+
+Font Awesome Icons
+https://fontawesome.com/
+
+Serializa o request json que será feito pelo site para uma API
+https://cdnjs.com/libraries/jquery.serializeJSON

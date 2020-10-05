@@ -2,7 +2,51 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+@section Scripts
+{
+    <script>
+        $(function(){
+            // Example on how to show toastr Message
+            //var title = '@ViewBag.Title';
+            //var message = '@ViewBag.Message';
+            //toastr.error(message, title);
+
+            // Example on how to show sweetalert popup
+            //Swal.fire({
+            //    title: 'Error!',
+            //    text: 'Do you want to continue',
+            //    icon: 'error',
+            //    confirmButtonText: 'Cool'
+            //})
+
+            // Example on how use datatables in a html Table
+            //$('#table_id').DataTable();
+        });
+    </script>
+}
+
 <div class="text-center">
     <h1 class="display-4">Welcome Ewerton.</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @*Table with Datatables Example*@
+    @*<table id="table_id" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+            </tr>
+            <tr>
+                <td>Row 2 Data 1</td>
+                <td>Row 2 Data 2</td>
+            </tr>
+        </tbody>
+    </table>*@
 </div>
