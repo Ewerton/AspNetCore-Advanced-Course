@@ -10,7 +10,7 @@ using Uplift.DataAccess.Data.Repository.IRepository;
 
 namespace Uplift.DataAccess.Data.Repository
 {
-    class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext Context;
         internal DbSet<T> dbSet;
@@ -26,6 +26,7 @@ namespace Uplift.DataAccess.Data.Repository
 
         public void Add(T entity)
         {
+            // O Salvamento é feito pelo UnitOfWOrk
             dbSet.Add(entity);
         }
 
@@ -100,6 +101,7 @@ namespace Uplift.DataAccess.Data.Repository
 
         public void Remove(T entity)
         {
+            // O Salvamento é feito pelo UnitOfWOrk
             dbSet.Remove(entity);
         }
 
