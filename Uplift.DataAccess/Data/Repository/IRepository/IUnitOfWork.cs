@@ -8,7 +8,9 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
     // entidades de uma forma transacional (todas de uma vez)
     public interface IUnitOfWork : IDisposable
     {
-        ICategoryRepository Category { get; }
+        ICategoryRepository CategoryRepository { get; }
+
+        IFrequencyRepository FrequencyRepository { get; }
 
         void Save();
     }

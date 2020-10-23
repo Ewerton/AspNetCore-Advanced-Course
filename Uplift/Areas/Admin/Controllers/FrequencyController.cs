@@ -9,11 +9,11 @@ using Uplift.Models;
 namespace Uplift.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
+    public class FrequencyController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public FrequencyController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -25,58 +25,56 @@ namespace Uplift.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            Category category = new Category();
+            Frequency frequency = new Frequency();
             if (id == null)
             {
-                return View(category);
+                return View(frequency);
             }
 
-            category = _unitOfWork.CategoryRepository.Get(id.GetValueOrDefault());
+            frequency = _unitOfWork.FrequencyRepository.Get(id.GetValueOrDefault());
 
-            if (category == null)
+            if (frequency == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(frequency);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Category category)
+        public IActionResult Upsert(Frequency frequency)
         {
             if (ModelState.IsValid)
             {
-                if (category.Id == 0)
-                    _unitOfWork.CategoryRepository.Add(category);
+                if (frequency.Id == 0)
+                    _unitOfWork.FrequencyRepository.Add(frequency);
                 else
-                    _unitOfWork.CategoryRepository.Update(category);
+                    _unitOfWork.FrequencyRepository.Update(frequency);
 
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(frequency);
         }
-
 
         #region API Calls
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.CategoryRepository.GetAll() });
+            return Json(new { data = _unitOfWork.FrequencyRepository.GetAll() });
         }
-
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var objFromDB = _unitOfWork.CategoryRepository.Get(id);
+            var objFromDB = _unitOfWork.FrequencyRepository.Get(id);
             if (objFromDB == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
-            _unitOfWork.CategoryRepository.Remove(objFromDB);
+            _unitOfWork.FrequencyRepository.Remove(objFromDB);
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Delete successful." });

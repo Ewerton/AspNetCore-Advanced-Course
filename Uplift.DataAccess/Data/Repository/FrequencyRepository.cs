@@ -10,31 +10,31 @@ using Uplift.Models;
 
 namespace Uplift.DataAccess.Data.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class FrequencyRepository : Repository<Frequency>, IFrequencyRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public CategoryRepository(ApplicationDbContext db) : base(db)
+        public FrequencyRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public IEnumerable<SelectListItem> GetCategoryListForDropDown()
+        public IEnumerable<SelectListItem> GetFrequencyListForDropDown()
         {
-            return _db.Categories.Select(i => new SelectListItem()
+            return _db.Frequencies.Select(i => new SelectListItem()
             {
                 Text = i.Name,
                 Value = i.Id.ToString()
             });
         }
 
-        public void Update(Category category)
+        public void Update(Frequency frequency)
         {
-            var objFromDB = _db.Categories.FirstOrDefault(s => s.Id == category.Id);
+            var objFromDB = _db.Frequencies.FirstOrDefault(s => s.Id == frequency.Id);
 
-            ///TODO: Tem como automatizar?
-            objFromDB.Name = category.Name;
-            objFromDB.DisplayOrder = category.DisplayOrder;
+            ///TODO: Tem como automatizar? Automapper?
+            objFromDB.Name = frequency.Name;
+            objFromDB.FrequencyCount = frequency.FrequencyCount;
 
             _db.SaveChanges();
         }

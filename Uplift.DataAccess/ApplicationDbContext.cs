@@ -13,11 +13,20 @@ namespace Uplift.DataAccess
     // ApplicationDbContext é o meu DbContext do EF
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
-        public DbSet<Category> Category { get; set; }
+        /*
+          1 - Abre o Nuget package Manager
+          2 - Em Default Project, muda para o Uplift.DataAccess (isso acontece porque o DataAccess está em um projeto separado e não no projeto MVC)
+          3 - add-migration <UmNomeQualquer> 
+          4 - update-database // Para executar os versionamentos
+        */
+
+        public DbSet<Category> Categories { get; set; }
+
+
+        public DbSet<Frequency> Frequencies { get; set; }
     }
 }
