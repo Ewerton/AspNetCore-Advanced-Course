@@ -15,6 +15,7 @@ namespace Uplift.DataAccess
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            
         }
 
         /*
@@ -28,5 +29,7 @@ namespace Uplift.DataAccess
 
 
         public DbSet<Frequency> Frequencies { get; set; }
+
+        public DbSet<Service> Services { get; set; }
     }
 }

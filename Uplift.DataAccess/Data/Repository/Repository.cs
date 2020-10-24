@@ -35,26 +35,64 @@ namespace Uplift.DataAccess.Data.Repository
             return dbSet.Find(id);
         }
 
-        public IEnumerable<T> GetAll(
-           Expression<Func<T, bool>> filter = null,
-           Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-           params Expression<Func<T, object>>[] includedProperties)
+        #region "GetAll() overloads"
+
+        public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = dbSet;
-
-            if (filter != null)
-                query = query.Where(filter);
-
-            query = AddIncludes(query, includedProperties);
-
-            if (orderBy != null)
-                return orderBy(query).ToList();
-            else
-                return query.ToList();
+            return query.AsEnumerable();
         }
 
-        // É possível usar uma Expression para definir os Includes e desta forma não 
-        // confiar em Strings
+        //public IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includedProperties)
+        //{
+        //    IQueryable<T> query = dbSet;
+
+        //    query = AddIncludes(query, includedProperties);
+
+        //    return query.ToList();
+        //}
+
+        //public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter)
+        //{
+        //    IQueryable<T> query = dbSet;
+
+        //    if (filter != null)
+        //        query = query.Where(filter);
+
+        //    return query.ToList();
+        //}
+
+        //public IEnumerable<T> GetAll(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy)
+        //{
+        //    IQueryable<T> query = dbSet;
+
+        //    if (orderBy != null)
+        //        return orderBy(query).ToList();
+        //    else
+        //        return query.ToList();
+        //}
+
+        //public IEnumerable<T> GetAll(
+        //   Expression<Func<T, bool>> filter = null,
+        //   Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        //   params Expression<Func<T, object>>[] includedProperties)
+        //{
+        //    IQueryable<T> query = dbSet;
+
+        //    if (filter != null)
+        //        query = query.Where(filter);
+
+        //    query = AddIncludes(query, includedProperties);
+
+        //    if (orderBy != null)
+        //        return orderBy(query).ToList();
+        //    else
+        //        return query.AsEnumerable();
+        //}
+
+        #endregion
+
+        // É possível usar uma Expression para definir os Includes e desta forma não confiar em Strings
         //public IEnumerable<T> GetAll(
         //    Expression<Func<T, bool>> filter = null,
         //    Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
@@ -80,18 +118,37 @@ namespace Uplift.DataAccess.Data.Repository
         //}
 
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null,
-                                   params Expression<Func<T, object>>[] includedProperties)
+        #region "FirstOrDefalut overloads"
+        public T GetFirstOrDefault()
         {
             IQueryable<T> query = dbSet;
-
-            if (filter != null)
-                query = query.Where(filter);
-
-            query = AddIncludes(query, includedProperties);
-
             return query.FirstOrDefault();
         }
+
+        //public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null,
+        //                           params Expression<Func<T, object>>[] includedProperties)
+        //{
+        //    IQueryable<T> query = dbSet;
+
+        //    if (filter != null)
+        //        query = query.Where(filter);
+
+        //    query = AddIncludes(query, includedProperties);
+
+        //    return query.FirstOrDefault();
+        //}
+
+        //public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        //{
+        //    IQueryable<T> query = dbSet;
+
+        //    if (filter != null)
+        //        query = query.Where(filter);
+
+        //    return query.FirstOrDefault();
+        //}
+
+        #endregion
 
         public void Remove(int id)
         {
@@ -113,15 +170,48 @@ namespace Uplift.DataAccess.Data.Repository
         /// <returns></returns>
         private IQueryable<T> AddIncludes(IQueryable<T> query, params Expression<Func<T, object>>[] includedProperties)
         {
-            foreach (var includedProp in includedProperties)
+            if (includedProperties != null)
             {
-                var memberExpression = includedProp.Body as MemberExpression;
+                foreach (var includedProp in includedProperties)
+                {
+                    var memberExpression = includedProp.Body as MemberExpression;
 
-                if (memberExpression != null)
-                    query = query.Include(memberExpression.Member.Name);
+                    if (memberExpression != null)
+                        query = query.Include(memberExpression.Member.Name);
+                }
             }
 
             return query;
         }
+    }
+
+    public static class RepoExtensions
+    {
+        // Este método de extensão pode ser chamado para adicionar propriedades de navegação nos resultados
+        // Tome cuidado para não criar multiplas consultas no banco, exemplo.
+        // Vc escreve uma query, faz ToList() que executa a query no banco, depois, chama Include() que vai forçar ir no banco novamente.
+        public static IEnumerable<T> Include<T>(this IEnumerable<T> query, params Expression<Func<T, object>>[] includedProperties) where T : class
+        {
+            if (includedProperties != null)
+            {
+                foreach (var includedProp in includedProperties)
+                {
+                    var memberExpression = includedProp.Body as MemberExpression;
+
+                    if (memberExpression != null)
+                        query = query.AsQueryable().Include(memberExpression.Member.Name);
+                }
+            }
+
+            return query;
+        }
+
+        //public static IEnumerable<T> Where<T>(this IEnumerable<T> query, Expression<Func<T, bool>> filter) where T : class
+        //{
+        //    if (filter != null)
+        //        query = query.AsQueryable().Where(filter);
+
+        //    return query;
+        //}
     }
 }

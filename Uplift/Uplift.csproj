@@ -29,6 +29,7 @@
     <Folder Include="wwwroot\css\jQuery\1.12.1\" />
     <Folder Include="wwwroot\css\jQuery\images\" />
     <Folder Include="wwwroot\css\images\" />
+    <Folder Include="wwwroot\images\services\" />
     <Folder Include="wwwroot\js\jQuery\1.12.1\" />
   </ItemGroup>
 
