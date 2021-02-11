@@ -72,23 +72,23 @@ namespace Uplift.DataAccess.Data.Repository
         //        return query.ToList();
         //}
 
-        //public IEnumerable<T> GetAll(
-        //   Expression<Func<T, bool>> filter = null,
-        //   Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-        //   params Expression<Func<T, object>>[] includedProperties)
-        //{
-        //    IQueryable<T> query = dbSet;
+        public IEnumerable<T> GetAll(
+           Expression<Func<T, bool>> filter = null,
+           Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+           params Expression<Func<T, object>>[] includedProperties)
+        {
+            IQueryable<T> query = dbSet;
 
-        //    if (filter != null)
-        //        query = query.Where(filter);
+            if (filter != null)
+                query = query.Where(filter);
 
-        //    query = AddIncludes(query, includedProperties);
+            query = AddIncludes(query, includedProperties);
 
-        //    if (orderBy != null)
-        //        return orderBy(query).ToList();
-        //    else
-        //        return query.AsEnumerable();
-        //}
+            if (orderBy != null)
+                return orderBy(query).ToList();
+            else
+                return query.AsEnumerable();
+        }
 
         #endregion
 
@@ -125,28 +125,18 @@ namespace Uplift.DataAccess.Data.Repository
             return query.FirstOrDefault();
         }
 
-        //public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null,
-        //                           params Expression<Func<T, object>>[] includedProperties)
-        //{
-        //    IQueryable<T> query = dbSet;
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null,
+                                   params Expression<Func<T, object>>[] includedProperties)
+        {
+            IQueryable<T> query = dbSet;
 
-        //    if (filter != null)
-        //        query = query.Where(filter);
+            if (filter != null)
+                query = query.Where(filter);
 
-        //    query = AddIncludes(query, includedProperties);
+            query = AddIncludes(query, includedProperties);
 
-        //    return query.FirstOrDefault();
-        //}
-
-        //public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
-        //{
-        //    IQueryable<T> query = dbSet;
-
-        //    if (filter != null)
-        //        query = query.Where(filter);
-
-        //    return query.FirstOrDefault();
-        //}
+            return query.FirstOrDefault();
+        }
 
         #endregion
 

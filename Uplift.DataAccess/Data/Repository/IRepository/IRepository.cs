@@ -24,11 +24,11 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
         /// <param name="orderBy">Uma expressão para ordenar os resultados</param>
         /// <param name="includedProperties">Uma ou várias expressões para incluir propriedades de navegação.</param>
         /// <returns></returns>
-        //IEnumerable<T> GetAll(
-        //    Expression<Func<T, bool>> filter = null, // Permite filtrar
-        //    Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, // Permite ordenar
-        //    params Expression<Func<T, object>>[] includedProperties
-        //    );
+        IEnumerable<T> GetAll(
+            Expression<Func<T, bool>> filter = null, // Permite filtrar
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, // Permite ordenar
+            params Expression<Func<T, object>>[] includedProperties
+            );
 
         IEnumerable<T> GetAll(); // Se precisar filtrar ou ordenar use Where() e Order(). Nunca retorna List() na classe concreta, sempre IEnumerable
 
@@ -44,7 +44,7 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
         /// </summary>
         /// <param name="filter">Uma expressão para filtrar os resultados</param>
         /// <returns></returns>
-        //IEnumerable<T> GetAll(Expression<Func<T, bool>> filter); // Permite filtrar
+        //IEnumerable<T> Where(Expression<Func<T, bool>> filter); // Permite filtrar
 
         /// <summary>
         /// Permite obter todos os objetos e ordenar os resultados
@@ -67,10 +67,10 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
         /// <param name="filter">Uma expressão para filtrar os resultados</param>
         /// <param name="includedProperties">Uma ou várias expressões para incluir propriedades de navegação.</param>
         /// <returns></returns>
-        //T GetFirstOrDefault(
-        //    Expression<Func<T, bool>> filter = null, // Permite filtrar
-        //     params Expression<Func<T, object>>[] includedProperties
-        //    );
+        T GetFirstOrDefault(
+            Expression<Func<T, bool>> filter = null, // Permite filtrar
+             params Expression<Func<T, object>>[] includedProperties
+            );
 
         /// <summary>
         /// Permite obter um objeto a partir de um filtro

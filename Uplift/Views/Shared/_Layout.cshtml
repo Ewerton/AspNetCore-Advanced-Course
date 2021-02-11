@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Uplift.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAcessor
+@using Uplift.Extensions
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -70,6 +75,28 @@
                                 <a class="dropdown-item" href="#">Separated link</a>
                             </div>
                         </li>*@
+
+                    @if (HttpContextAcessor.HttpContext.Session.GetObject<List<int>>(Constants.SessionCart) != null)
+                    {
+                        <li style="color:white">
+                            <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white">
+                                @{
+                                    var count = HttpContextAcessor.HttpContext.Session.GetObject<List<int>>(Constants.SessionCart).Count;
+                                }
+                                <i class="fas fa-shopping-cart"></i>&nbsp; (@count)
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li style="color:white">
+                            <a href="#" class="nav-link text-white">
+                                <i class="fas fa-shopping-cart"></i>&nbsp; (0)
+                            </a>
+                        </li>
+                    }
+
+
                 </ul>
                 @*<form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search">
