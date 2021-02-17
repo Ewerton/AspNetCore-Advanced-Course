@@ -33,7 +33,7 @@ namespace Uplift.Areas.Customer.Controllers
             HomeVM = new HomeViewModel()
             {
                 CategoryList = _unitOfWork.CategoryRepository.GetAll(),
-                ServiceList = _unitOfWork.ServiceRepository.GetAll().Include(x => x.Frequency)
+                ServiceList = _unitOfWork.ServiceRepository.GetBy(x => x.Frequency)
             };
 
             return View(HomeVM);

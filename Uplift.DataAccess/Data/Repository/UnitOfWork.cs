@@ -7,20 +7,25 @@ using Uplift.Models;
 
 namespace Uplift.DataAccess.Data.Repository
 {
-    public class UnityOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _db;
 
         public ICategoryRepository CategoryRepository { get; private set; }
         public IFrequencyRepository FrequencyRepository { get; private set; }
         public IServiceRepository ServiceRepository { get; private set; }
+        public IOrderHeaderRepository OrderHeaderRepository { get; private set; }
 
-        public UnityOfWork(ApplicationDbContext db)
+        public IOrderDetailsRepository OrderDetailsRepository { get; private set; }
+
+        public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             CategoryRepository = new CategoryRepository(_db);
             FrequencyRepository = new FrequencyRepository(_db);
             ServiceRepository = new ServiceRepository(_db);
+            OrderHeaderRepository = new OrderHeaderRepository(_db);
+            OrderDetailsRepository = new OrderDetailsRepository(_db);
         }
 
         public void Save()

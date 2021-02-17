@@ -40,7 +40,7 @@ namespace Uplift
                 .AddDefaultUI() // Adiciona View padrão para Login e Register
                 .AddDefaultTokenProviders();
 
-            services.AddScoped<IUnitOfWork, UnityOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSession(options =>
             {

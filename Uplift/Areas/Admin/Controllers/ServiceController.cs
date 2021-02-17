@@ -137,9 +137,7 @@ namespace Uplift.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var res = _unitOfWork.ServiceRepository.GetAll()
-                                                   .Include(x => x.Category)
-                                                   .Include(x => x.Frequency);
+            var res = _unitOfWork.ServiceRepository.GetBy(inc => inc.Category, inc => inc.Frequency);
             return Json(new
             {
                 data = res.ToList()

@@ -7,5 +7,9 @@ namespace Uplift.Utility
     public static class Constants
     {
         public const String SessionCart = "Uplift_Cart";
+
+        public const String StatusSubmitted = "Submitted";
+        public const String StatusApproved = "Approved";
+        public const String Statusrejected = "Rejected";
     }
 }
