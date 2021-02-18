@@ -34,6 +34,7 @@ namespace Uplift
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+
             services.AddIdentity<IdentityUser, IdentityRole>()
                 // .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -85,10 +86,13 @@ namespace Uplift
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseCookiePolicy();
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {
@@ -98,7 +102,14 @@ namespace Uplift
                 endpoints.MapRazorPages();
             });
 
-           
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //      name: "areas",
+            //      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            //    );
+            //});
+
         }
     }
 }
