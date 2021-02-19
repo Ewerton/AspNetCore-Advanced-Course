@@ -111,3 +111,14 @@ body {
     min-height: 38px;
     border-radius: 2px;
 }
+
+.even {
+    background-color: darkslategray !important;
+}
+
+
+
+/*table.dataTable tbody tr {*/
+    /*background-color: #ffffff;*/
+    /*background-color: #585858 !important;
+}*/

@@ -18,5 +18,12 @@ namespace Uplift.DataAccess.Data.Repository
         {
             _db = db;
         }
+
+        public void ChangeOrderStatus(int orderHeaderId, string status)
+        {
+            var orderFromDB = _db.OrderHeader.FirstOrDefault(o => o.Id == orderHeaderId);
+            orderFromDB.Status = status;
+            _db.SaveChanges();
+        }
     }
 }
