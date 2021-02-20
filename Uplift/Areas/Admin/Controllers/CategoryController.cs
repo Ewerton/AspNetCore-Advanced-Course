@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Uplift.DataAccess.Data.Repository.IRepository;
 using Uplift.Models;
+using Uplift.Utility;
 
 namespace Uplift.Areas.Admin.Controllers
 {
@@ -65,7 +66,11 @@ namespace Uplift.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.CategoryRepository.GetAll() });
+            // Chama usando o EF Core 
+            //return Json(new { data = _unitOfWork.CategoryRepository.GetAll() });
+
+            // Chama usando StoredProcedures
+            return Json(new { data = _unitOfWork.StoredProcedureCall.ReturnList<Category>(Constants.usp_GetAllCategory)});
         }
 
 

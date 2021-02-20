@@ -18,6 +18,8 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
         IOrderDetailsRepository OrderDetailsRepository { get; }
 
         IUserRepository UsersRepository { get; }
+
+        IStoredProcedureCall StoredProcedureCall { get; }
         void Save();
     }
 }

@@ -20,6 +20,8 @@ namespace Uplift.DataAccess.Data.Repository
 
         public IUserRepository UsersRepository { get; private set; }
 
+        public IStoredProcedureCall StoredProcedureCall { get; private set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -29,6 +31,7 @@ namespace Uplift.DataAccess.Data.Repository
             OrderHeaderRepository = new OrderHeaderRepository(_db);
             OrderDetailsRepository = new OrderDetailsRepository(_db);
             UsersRepository = new UserRepository(_db);
+            StoredProcedureCall = new StoredProcedureCall(_db);
         }
 
         public void Save()
