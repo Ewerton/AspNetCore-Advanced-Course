@@ -59,7 +59,7 @@ namespace Uplift
 
             services.AddRazorPages();
 
-            // Ms Identity utiliza estes cookies para saber os caminhos de autenticação
+            // Ms Identity utiliza estes cookies para saber as urls de autenticação
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/Identity/Account/Login";
