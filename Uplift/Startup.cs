@@ -15,6 +15,7 @@ using Uplift.DataAccess.Data;
 using Uplift.DataAccess;
 using Uplift.DataAccess.Data.Repository.IRepository;
 using Uplift.DataAccess.Data.Repository;
+using Uplift.DataAccess.Data.Initializer;
 
 namespace Uplift
 {
@@ -42,7 +43,7 @@ namespace Uplift
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddScoped<IDBInitializer, DBInitializer>();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -51,7 +52,7 @@ namespace Uplift
             });
 
             //services.AddSingleton<IEmailSender, EmailSender>();
-           
+
             services.AddControllersWithViews()
                 .AddNewtonsoftJson() // Para chamar APIs é necessário serializar o resques e response, para isso usamos a Newtonsoft 
                 .AddRazorRuntimeCompilation();  // AddRazorRuntimeCompilation() está no assembly Microsoft.ASPNetCore.MVC.Razor.RuntimeCompilation 
@@ -70,7 +71,7 @@ namespace Uplift
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDBInitializer dbInit)
         {
             if (env.IsDevelopment())
             {
@@ -89,6 +90,9 @@ namespace Uplift
             app.UseCookiePolicy();
 
             app.UseRouting();
+
+            // Vai inicializar o banco, se não existir roles ou o usuário Admin padrão.
+            dbInit.Initialize();
 
             app.UseAuthentication();
             app.UseAuthorization();

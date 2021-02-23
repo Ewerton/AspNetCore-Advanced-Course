@@ -111,11 +111,12 @@ namespace Uplift.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     // Se a Role Admin não existir na tabela dbo.AspNetUserRoles utilizo a classe RoleManager pra criar a role
-                    if (!await _roleManager.RoleExistsAsync(Constants.Admin))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(Constants.Admin));
-                        await _roleManager.CreateAsync(new IdentityRole(Constants.Manager));
-                    }
+                    // Comentei abaixo pois o banco terá seus primeiros dados populados pela classe Uplift.DataAccess.Data.Initializer.DbInitializer
+                    //if (!await _roleManager.RoleExistsAsync(Constants.Admin))
+                    //{
+                    //    await _roleManager.CreateAsync(new IdentityRole(Constants.Admin));
+                    //    await _roleManager.CreateAsync(new IdentityRole(Constants.Manager));
+                    //}
 
                     // Pega o valor selecionado no Radio Button onde o usuário seleciona as Roles
                     string role = Request.Form["rdUserRole"].ToString();
