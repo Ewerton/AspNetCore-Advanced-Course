@@ -126,6 +126,12 @@ body {
     color: #aaa !important;
 }
 
+.tinymceformatted p {
+    background-color: transparent !important;
+    color: #aaa !important;
+}
+
+
 /*table.dataTable tbody tr {*/
 /*background-color: #ffffff;*/
 /*background-color: #585858 !important;
