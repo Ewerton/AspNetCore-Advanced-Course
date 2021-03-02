@@ -1,6 +1,7 @@
 # AspNetCore-Advanced-Course
-Small e-commerce developed during the <a href="https://www.udemy.com/course/master-aspnet-core-3-advanced/" target="_blank">Aspnet Core Advanced course</a> from Udemy
-For testing pourposes, this app is hosted in Azure too (https://upliftewer.azurewebsites.net){:target="_blank"}
+Small e-commerce developed during the [Aspnet Core Advanced course](https://www.udemy.com/course/master-aspnet-core-3-advanced) from Udemy
 
-Original code from the course is hosted at (https://github.com/bhrugen/Uplift){:target="_blank"}
-Course Author Webpage (https://www.dotnetmastery.com/#course){:target="_blank"}
+For testing pourposes, this app is hosted in Azure too (https://upliftewer.azurewebsites.net)
+
+Original code from the course is hosted at (https://github.com/bhrugen/Uplift)
+Course Author Webpage (https://www.dotnetmastery.com/#course)
