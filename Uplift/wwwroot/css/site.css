@@ -13,7 +13,7 @@ a {
 }
 
 .btn-primary {
-    color: #fff;
+    color: #aaa;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
@@ -118,7 +118,13 @@ body {
     background-color: darkslategray !important;
 }
 
+.white-text {
+    color: #fff;
+}
 
+.text-primary {
+    color: #aaa !important;
+}
 
 /*table.dataTable tbody tr {*/
 /*background-color: #ffffff;*/

@@ -345,7 +345,8 @@ table.dataTable {
             border: 1px solid #aaa;
             border-radius: 3px;
             padding: 5px;
-            background-color: transparent;
+            /*background-color: transparent;*/
+            background-color: #aaa !important;
             padding: 4px;
         }
 
@@ -358,7 +359,7 @@ table.dataTable {
             border: 1px solid #aaa;
             border-radius: 3px;
             padding: 5px;
-            background-color: transparent;
+            background-color: #aaa;
             margin-left: 3px;
         }
 
@@ -409,7 +410,7 @@ table.dataTable {
 
             .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
                 cursor: default;
-                color: #666 !important;
+                color: #aaa !important;
                 border: 1px solid transparent;
                 background: transparent;
                 box-shadow: none;

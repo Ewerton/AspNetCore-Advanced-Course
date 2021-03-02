@@ -25,6 +25,42 @@
     </form>
 </div>
 
+<div class="pb-2">
+    <span style="color:burlywood">
+        <i class="fas fa-lightbulb"></i>
+    </span>
+    <span>Login tips:</span>
+</div>
+<div class="container" style="font-size: 12px">
+    <div class="row">
+        <div class="col-sm">
+            <b>Administrator</b>
+        </div>
+        <div class="col-sm">
+            <b>Manager</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            User: admin@email.com
+        </div>
+        <div class="col-sm">
+            User: test@email.com
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            @Html.Raw("Admin123!@#")
+        </div>
+        <div class="col-sm">
+            @Html.Raw("Test123!@#")
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <!--<h1>@ViewData["Title"]</h1>
 <div class="row">
@@ -99,5 +135,5 @@
 </div>-->
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }
