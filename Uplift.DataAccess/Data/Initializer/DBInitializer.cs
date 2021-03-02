@@ -58,6 +58,21 @@ namespace Uplift.DataAccess.Data.Initializer
 
             ApplicationUser user = _db.ApplicationUsers.Where(u => u.Email == "admin@email.com").FirstOrDefault();
             _userManager.AddToRoleAsync(user, Constants.Admin).GetAwaiter().GetResult();
+
+            // Cria o segundo usuári opara testes
+            _userManager.CreateAsync(new ApplicationUser
+            {
+                Name = "Test",
+                UserName = "test@email.com",
+                Email = "test@email.com",
+                EmailConfirmed = true
+            }, "Test123!@#").GetAwaiter().GetResult();
+
+            //var user = _db.ApplicationUsers.Where(u => u.Email == "admin@gmail.com").ToList().LastOrDefault();
+            //_userManager.AddToRoleAsync(user, Constants.Admin).GetAwaiter().GetResult();
+
+            ApplicationUser user2 = _db.ApplicationUsers.Where(u => u.Email == "test@email.com").FirstOrDefault();
+            _userManager.AddToRoleAsync(user, Constants.Manager).GetAwaiter().GetResult();
         }
     }
 }
