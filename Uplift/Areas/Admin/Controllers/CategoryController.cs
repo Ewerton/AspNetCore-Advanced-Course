@@ -67,10 +67,10 @@ namespace Uplift.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
             // Chama usando o EF Core 
-            //return Json(new { data = _unitOfWork.CategoryRepository.GetAll() });
+            return Json(new { data = _unitOfWork.CategoryRepository.GetAll() });
 
             // Chama usando StoredProcedures
-            return Json(new { data = _unitOfWork.StoredProcedureCall.ReturnList<Category>(Constants.usp_GetAllCategory)});
+            //return Json(new { data = _unitOfWork.StoredProcedureCall.ReturnList<Category>(Constants.usp_GetAllCategory)});
         }
 
 
