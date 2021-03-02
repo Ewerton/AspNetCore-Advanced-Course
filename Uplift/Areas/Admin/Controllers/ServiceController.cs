@@ -73,16 +73,18 @@ namespace Uplift.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     var uploadsFolder = Path.Combine(webRootPath, @"images\services");
                     // Aqui não precisa validar se o file[0] existe pois já fiz isso na VIew, porém, seria bom validar.
-                    var fileExtension = Path.GetExtension(files[0].FileName);
-
-                    using (var fileStreams = new FileStream(Path.Combine(uploadsFolder, fileName + fileExtension), FileMode.Create))
+                    if (files.Count > 0)
                     {
-                        files[0].CopyTo(fileStreams);
+                        var fileExtension = Path.GetExtension(files[0].FileName);
+
+                        using (var fileStreams = new FileStream(Path.Combine(uploadsFolder, fileName + fileExtension), FileMode.Create))
+                        {
+                            files[0].CopyTo(fileStreams);
+                        }
+
+                        // Atualiza a ImageUrl no objeto para salvar essa informação no banco
+                        ServVM.Service.ImageUrl = @"\images\services\" + fileName + fileExtension;
                     }
-
-                    // Atualiza a ImageUrl no objeto para salvar essa informação no banco
-                    ServVM.Service.ImageUrl = @"\images\services\" + fileName + fileExtension;
-
                     _unitOfWork.ServiceRepository.Add(ServVM.Service);
                 }
                 else
@@ -153,10 +155,13 @@ namespace Uplift.Areas.Admin.Controllers
             var objFromDB = _unitOfWork.ServiceRepository.Get(id);
 
             string webRootPath = _hostEnvironment.WebRootPath;
-            var imagePath = Path.Combine(webRootPath, objFromDB.ImageUrl.TrimStart('\\')); // remove a primeira barra do path
-            if (System.IO.File.Exists(imagePath))
+            if (objFromDB.ImageUrl != null)
             {
-                System.IO.File.Delete(imagePath);
+                var imagePath = Path.Combine(webRootPath, objFromDB.ImageUrl.TrimStart('\\')); // remove a primeira barra do path
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
             }
 
             if (objFromDB == null)
