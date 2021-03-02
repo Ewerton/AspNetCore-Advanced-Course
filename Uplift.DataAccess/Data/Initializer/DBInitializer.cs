@@ -48,15 +48,15 @@ namespace Uplift.DataAccess.Data.Initializer
             _userManager.CreateAsync(new ApplicationUser
             {
                 Name = "Admin",
-                UserName = "admin@gmail.com",
-                Email = "admin@gmail.com",
+                UserName = "admin@email.com",
+                Email = "admin@email.com",
                 EmailConfirmed = true
-            }, "Admin123*").GetAwaiter().GetResult();
+            }, "Admin123!@#").GetAwaiter().GetResult();
 
             //var user = _db.ApplicationUsers.Where(u => u.Email == "admin@gmail.com").ToList().LastOrDefault();
             //_userManager.AddToRoleAsync(user, Constants.Admin).GetAwaiter().GetResult();
 
-            ApplicationUser user = _db.ApplicationUsers.Where(u => u.Email == "admin@gmail.com").FirstOrDefault();
+            ApplicationUser user = _db.ApplicationUsers.Where(u => u.Email == "admin@email.com").FirstOrDefault();
             _userManager.AddToRoleAsync(user, Constants.Admin).GetAwaiter().GetResult();
         }
     }
