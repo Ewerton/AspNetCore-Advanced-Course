@@ -41,7 +41,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-12 col-md-6 pb-1">
-                    <a asp-action="Index" class="btn btn-success form-control  btn-square btn-lg" style="height:50px;">Back to List</a>
+                    <a asp-action="Index" class="btn btn-primary form-control  btn-square btn-lg" style="height:50px;">Back to List</a>
                 </div>
                 <div class="col-12 col-md-6 pb-1">
                     @{
@@ -56,10 +56,10 @@
                             }
                         }
                     }
-
+                        
                     @if (AddToCartEnabled)
                     {
-                        <a asp-action="AddToCart" asp-route-serviceId="@Model.Id" class="btn btn-primary btn-square form-control btn-lg" style="height:50px;">Add to Cart</a>
+                        <a asp-action="AddToCart" asp-route-serviceId="@Model.Id" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">Add to Cart</a>
                     }
                     else
                     {
